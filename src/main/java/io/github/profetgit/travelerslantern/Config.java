@@ -27,8 +27,9 @@ public final class Config {
     /**
      * Client: the smooth light follows the light around it. In daylight or a lit room it glows softly (about half as
      * bright, a shorter reach); at night, underground and in the dark it is at full strength and reaches a bit farther.
+     * Off (default since 0.2.18, renamed from adaptiveLight so old configs pick the new default): always full strength.
      */
-    public boolean adaptiveLight = true;
+    public boolean softInDaylight = false;
     /** Client, on servers without the mod: the belt is on (it shows a lantern from your inventory). */
     public boolean clientBelt = false;
     /** Client: the lantern hangs on the left hip (false: the right one). */

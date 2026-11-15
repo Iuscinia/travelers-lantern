@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.18 — 2026-11-15
+
+- The lantern now shines at full strength in daylight too. It used to dim itself under open sky, so it seemed to work only in shade, caves or at night. The old behaviour is still there as `softInDaylight` in `config/travelers_lantern.json` (off by default; this also resets the old `adaptiveLight` setting).
+
 ## 0.2.17 — 2026-11-10
 
 - Fixed the lantern's light skipping the tops of ledges, blocks and floors above the lantern's height with Sodium: they now light up like everything else around you.

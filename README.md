@@ -34,7 +34,7 @@ On a server without the mod the lantern stays an ordinary item in your inventory
 
 ![Settings](https://raw.githubusercontent.com/ProfetGit/travelers-lantern/main/docs/desc/title-settings.webp)
 
-The settings are in `config/travelers_lantern.json`: `adaptiveLight` (softer light in bright places), `smoothLight` (off: the light moves a block at a time, which is lighter on slow computers), `lightUpdatesPerSecond` (20 to 60), `clientLight` (the lantern lights things at all), `leftSide` (which hip) and `clinks`. On a server, operators can use `/travelerslantern light [true|false]` to turn the light off or on for players who don't have the mod.
+The settings are in `config/travelers_lantern.json`: `softInDaylight` (off by default: on, the light is softer in bright places), `smoothLight` (off: the light moves a block at a time, which is lighter on slow computers), `lightUpdatesPerSecond` (20 to 60), `clientLight` (the lantern lights things at all), `leftSide` (which hip) and `clinks`. On a server, operators can use `/travelerslantern light [true|false]` to turn the light off or on for players who don't have the mod.
 
 ![Compatibility](https://raw.githubusercontent.com/ProfetGit/travelers-lantern/main/docs/desc/title-compatibility.webp)
 

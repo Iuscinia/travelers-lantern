@@ -24,7 +24,7 @@ import net.minecraft.world.phys.Vec3;
  * updates a second and 2.1 at 60); with r = 7.5 that is at most 2×2×2 sections per lantern, and a lantern far from the
  * camera waits for a bigger move. Light passes through walls, as in other dynamic light mods; Sodium's per-vertex light skips
  * faces turned away from the lantern.
- * Adaptive light (config adaptiveLight): the world's own light at the lantern (sky light minus the time of day and the
+ * Adaptive light (config softInDaylight, off by default): the world's own light at the lantern (sky light minus the time of day and the
  * weather, or block light from torches) sets how strong it is. Around light 12 and up (daylight, a lit room) it gives
  * DIM of its level over DIM_REACH of its radius; below about 4 (night, caves) full level over DARK_REACH. It eases
  * between the two over EASE seconds, so walking into a cave brightens it gradually instead of switching.
@@ -129,7 +129,7 @@ public final class DynamicLight {
                 HEIGHT.put(p.getId(), hy);
                 at = new Vec3(at.x, hy, at.z);
                 float bright = 0;
-                if (Config.get().adaptiveLight) {
+                if (Config.get().softInDaylight) {
                     float target = ambient(lv, at);
                     float was = AMBIENT.getOrDefault(p.getId(), target);
                     bright = was + (target - was) * (1 - (float) Math.exp(-dt / EASE));

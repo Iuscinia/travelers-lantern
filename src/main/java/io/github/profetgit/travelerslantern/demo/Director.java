@@ -373,7 +373,7 @@ public final class Director {
 
     /**
      * The belt lantern lights the player (the entity light the renderer uses) and the ground beside it (the light a
-     * chunk mesh is built with), and this client has no light block of its own there. Adaptive light: at noon on open
+     * chunk mesh is built with), and this client has no light block of its own there. With softInDaylight on: at noon on open
      * ground it glows softly (about 7 of 15 at the player), at midnight it is at full strength and reaches farther.
      */
     static void lightChecks(Minecraft mc, String name, boolean day) {
@@ -383,11 +383,12 @@ public final class Director {
         float floor = (net.minecraft.util.LightCoordsUtil.getLightCoords(mc.level, ground) & 0xFFFF) / 16F;
         int blocks = lightBlocks(mc);
         float amb = DynamicLight.ambientOf(mc.player.getId());
-        boolean ok = day ? self >= 5 && self <= 8.5 && floor >= 3 && floor <= 8 : self >= 13 && floor >= 12;
+        boolean soft = day && io.github.profetgit.travelerslantern.Config.get().softInDaylight;
+        boolean ok = soft ? self >= 5 && self <= 8.5 && floor >= 3 && floor <= 8 : self >= 13 && floor >= 12;
         check(name, ok && blocks == 0, String.format(Locale.ROOT,
             "player lit %.2f, ground 2 blocks off %.2f (sixteenths of block light), %d light blocks on this client (%s)",
-            self, floor, blocks, day ? "noon, dimmed" : "midnight, full"));
-        check(name + "_ambient", day ? amb > 0.95 : amb >= 0 && amb < 0.05,
+            self, floor, blocks, soft ? "noon, dimmed" : day ? "noon, full" : "midnight, full"));
+        check(name + "_ambient", soft ? amb > 0.95 : amb >= 0 && amb < 0.05,
             String.format(Locale.ROOT, "surroundings %.2f (0 dark .. 1 bright)", amb));
     }
 
