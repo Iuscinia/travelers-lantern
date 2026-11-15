@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.19 — 2026-11-15
+
+- Minecraft 1.21.1 Forge gets 0.2.18's full-strength daylight light. It was held back by a problem in our test setup, not in the mod: nothing changes for players.
+
 ## 0.2.18 — 2026-11-15
 
 - The lantern now shines at full strength in daylight too. It used to dim itself under open sky, so it seemed to work only in shade, caves or at night. The old behaviour is still there as `softInDaylight` in `config/travelers_lantern.json` (off by default; this also resets the old `adaptiveLight` setting).

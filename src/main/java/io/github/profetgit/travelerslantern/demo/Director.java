@@ -168,6 +168,10 @@ public final class Director {
     static void setup(Minecraft mc) {
         ModTestHook.audit();
         cmd(mc, ModTestHook.commands().toArray(String[]::new));
+        // Forge 1.21.1 runs --quickPlaySingleplayer before it starts its event bus, so the world's first datapack load
+        // fires AddReloadListenerEvent into a stopped bus: no LootModifierManager, every loot table throws (no death
+        // drops). Worlds opened from the menu load after the bus starts. A /reload gives Forge its reload event.
+        if ("forge".equals(io.github.profetgit.travelerslantern.platform.Platform.get().loader())) cmd(mc, "reload");
         String p = name(mc);
         cmd(mc, "gamerule advance_time false", "gamerule advance_weather false", "gamerule spawn_mobs false", "gamerule spawn_monsters false",
             "gamerule send_command_feedback false", "gamerule immediate_respawn true", "time set 6000", "weather clear", "difficulty peaceful",
